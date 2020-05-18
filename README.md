@@ -47,7 +47,7 @@ When the pod is ready, run:
 
 ```bash
 # Get postgresql pod name
-POD_POSTGRESQL=$(oc get po | grep postgresql | awk '{print $1}')
+POD_POSTGRESQL=$(oc get po | grep postgresql | grep -v deploy | awk '{print $1}')
 
 # Create database
 oc exec -it $POD_POSTGRESQL -- bash -c 'psql -U redhat -d sampledb -c "CREATE TABLE users(id serial PRIMARY KEY,name VARCHAR (50),phone VARCHAR (50),age integer);"'
